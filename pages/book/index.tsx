@@ -1,6 +1,7 @@
 import React,{ useEffect } from 'react';
+import Link from "next/link";
+import { InferGetStaticPropsType } from 'next';
 
-import { InferGetStaticPropsType } from 'next'
 type book = {
     id: number
     title: string
@@ -8,8 +9,8 @@ type book = {
 }
 
 export const getStaticProps = async () => {
-    
-    const res = await fetch('http://localhost:3000/api');
+    require('dotenv').config()
+    const res = await fetch(`https://datafakeapi.vercel.app/api/dataapi`);
     const books: book[] = await res.json();
 
     return {
@@ -19,22 +20,35 @@ export const getStaticProps = async () => {
       },
       
     }
+    // const res = await fetch(`http://localhost:3000/api/databooks/2`);
+    // const books: book[] = await res.json();
+
+    // return {
+        
+    //   props: {
+    //     books:books,
+    //   },
+      
+    // }
     
 }
 
 const Book = ({books}: InferGetStaticPropsType<typeof getStaticProps>) => {
     console.log(books);
-    const booksmap:book[]=books
+    
+    
+    
     return (
         <div>
             Api routings
             
-            {booksmap.map((item,index)=>{
-                return <div key={index}>
+            {books.map((item,index)=>{
+                return <Link href={'/book/'+item.id} key={index}>
                         {item.title}
                     
-                    </div>
+                    </Link>
             })}
+            
         </div>
     )
 }

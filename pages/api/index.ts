@@ -10,7 +10,11 @@ export default function handler(req:any,res:any){
                 'title': Random.name()
             }]
         });
-        res.status(200).json(data.list)
+        res.status(200).json(data.list) 
+      }else{
+          res.status(200).json({name:"GET REQUEST"})
       }
+      
     
 }
+
