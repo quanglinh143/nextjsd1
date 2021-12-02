@@ -20,16 +20,7 @@ export const getStaticProps = async () => {
       },
       
     }
-    // const res = await fetch(`http://localhost:3000/api/databooks/2`);
-    // const books: book[] = await res.json();
-
-    // return {
-        
-    //   props: {
-    //     books:books,
-    //   },
-      
-    // }
+    
     
 }
 
